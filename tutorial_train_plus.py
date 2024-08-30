@@ -418,8 +418,9 @@ def main():
                 optimizer.zero_grad()
 
                 if accelerator.is_main_process:
-                    print("Epoch {}, step {}, data_time: {}, time: {}, step_loss: {}".format(
-                        epoch, step, load_data_time, time.perf_counter() - begin, avg_loss))
+                    if global_step % 100 == 0:
+                        print("Epoch {}, step {}, data_time: {}, time: {}, step_loss: {}".format(
+                            epoch, step, load_data_time, time.perf_counter() - begin, avg_loss))
             
             global_step += 1
             
